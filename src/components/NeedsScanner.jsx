@@ -39,7 +39,7 @@ export const NeedsScanner = () => {
         </div>
 
         {/* --- MAIN CONTAINER: Added items-center and mx-auto for mobile --- */}
-        <div className="relative flex min-h-[450px] md:min-h-[420px] overflow-hidden rounded-sm shadow-xl border border-gray-100 mx-auto">
+        <div className="relative flex min-h-112.5 md:min-h-105 overflow-hidden rounded-sm shadow-xl border border-gray-100 mx-auto">
           
 {/* Background Image Layer */}
 <div className="absolute inset-0 z-0">
@@ -52,7 +52,7 @@ export const NeedsScanner = () => {
   />
   
   {/* Gradient Overlay: Adjusted for better readability with right-aligned images */}
-  <div className="absolute inset-0 bg-gradient-to-r from-[#081a2e]/95 via-[#081a2e]/60 to-transparent md:bg-gradient-to-br md:from-[#081a2e]/80 md:via-[#081a2e]/40 md:to-transparent"></div>
+  <div className="absolute inset-0 bg-linear-to-r from-[#081a2e]/95 via-[#081a2e]/60 to-transparent md:bg-linear-to-br md:from-[#081a2e]/80 md:via-[#081a2e]/40 md:to-transparent"></div>
 </div>
 
           {/* Content Area - Centered on mobile, Top-Left on Desktop */}
@@ -62,7 +62,7 @@ export const NeedsScanner = () => {
                  <span className="text-[10px] font-black tracking-[0.5em] text-blue-200 uppercase drop-shadow-md">
                    Option 0{current.id} / 05
                  </span>
-                 <div className="hidden md:block h-[1px] w-8 bg-white/40"></div>
+                 <div className="hidden md:block h-px w-8 bg-white/40"></div>
               </div>
               
               <h3 className="text-2xl lg:text-4xl font-black mb-4 uppercase tracking-tight italic drop-shadow-lg leading-tight">

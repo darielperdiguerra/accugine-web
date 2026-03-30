@@ -48,7 +48,7 @@ export const ProductGallery = () => {
 
   return (
     /* Added min-w-[375px] and centered with mx-auto */
-    <section className="w-full py-24 px-6 font-proxima min-w-[375px]">
+    <section id="product-gallery" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto">
         
         {/* Section Header - Pulls H1 and Label from index.css */}
@@ -58,7 +58,7 @@ export const ProductGallery = () => {
             CHOOSE THE <span className="text-blue-500">PERFECT PAIR</span> <br className="hidden md:block" /> 
             FOR YOUR WINDOWS
           </h1>
-          <div className="w-24 h-[4px] bg-blue-500 mx-auto mt-10"></div>
+          <div className="w-24 h-1 bg-blue-500 mx-auto mt-10"></div>
         </div>
 
         {/* Product Grid */}
@@ -79,7 +79,7 @@ export const ProductGallery = () => {
               </div>
 
               {/* Content Area - Pulls H3 and P from index.css */}
-              <div className="p-10 border-b-8 border-transparent group-hover:border-blue-500 transition-all flex-grow">
+              <div className="p-10 border-b-8 border-transparent group-hover:border-blue-500 transition-all grow">
                 <h3 className="group-hover:text-blue-600 transition-colors">
                   {item.title}
                 </h3>

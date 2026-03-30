@@ -29,7 +29,7 @@ export const Hero = () => {
       {/* Container Fix: Added mx-auto and w-full for mobile centering */}
       <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
         
-        <div className="relative h-[500px] md:h-[700px] overflow-hidden bg-gray-900 border border-gray-200 shadow-2xl rounded-sm group">
+        <div className="relative h-125 md:h-175 overflow-hidden bg-gray-900 border border-gray-200 shadow-2xl rounded-sm group">
           
           {/* BACKGROUND LAYER - Click logic fixed with z-index */}
           {slides.map((slide, index) => (
@@ -43,20 +43,20 @@ export const Hero = () => {
               <img 
                 src={slide.url} 
                 alt={slide.title} 
-                className="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-105" 
+                className="w-full h-full object-cover transition-transform duration-2000 group-hover:scale-105" 
               />
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#081a2e]/95 via-transparent to-black/20"></div>
+              <div className="absolute inset-0 bg-linear-to-tr from-[#081a2e]/95 via-transparent to-black/20"></div>
             </div>
           ))}
 
           {/* Top Right Contact Box (z-20) */}
           <div className="absolute top-0 right-0 z-20 p-4 md:p-6 text-right">
-            <div className="backdrop-blur-md bg-white/10 border border-white/20 p-4 md:p-5 rounded-sm shadow-xl max-w-[220px] ml-auto">
+            <div className="backdrop-blur-md bg-white/10 border border-white/20 p-4 md:p-5 rounded-sm shadow-xl max-w-55 ml-auto">
               <h3 className="text-blue-300 font-black uppercase tracking-[0.3em] text-[8px] mb-3">Give us a buzz!</h3>
               <div className="space-y-2 text-white text-left">
                 <p className="text-[12px] md:text-sm font-bold">0915-982-5084 <span className="text-[9px] text-blue-300 opacity-60 ml-1">GLOBE</span></p>
                 <p className="text-[12px] md:text-sm font-bold">0960-371-3490 <span className="text-[9px] text-green-300 opacity-70 ml-1">SMART</span></p>
-                <div className="h-[1px] bg-white/10 my-2"></div>
+                <div className="h-px bg-white/10 my-2"></div>
                 <a href="mailto:sales@accugine.ph" className="block text-[9px] font-medium text-white/70 truncate">sales@accugine.ph</a>
               </div>
             </div>
@@ -69,7 +69,7 @@ export const Hero = () => {
               <h1 className="text-2xl lg:text-4xl leading-tight mb-3 tracking-tight font-black uppercase">
                 YOUR <span className="text-blue-400">WINDOW,</span> <br /> STYLIZED
               </h1>
-              <p className="text-[12px] md:text-sm text-white/80 font-medium leading-relaxed mb-6 max-w-[280px]">
+              <p className="text-[12px] md:text-sm text-white/80 font-medium leading-relaxed mb-6 max-w-70">
                 Trendy, Functional and Cost-effective Window Blinds for your Home and Office.
               </p>
               <div className="flex gap-3">
@@ -92,7 +92,7 @@ export const Hero = () => {
       {/* --- LIGHTBOX MODAL --- */}
       {selectedImage && (
         <div 
-          className="fixed inset-0 z-[100] bg-[#081a2e]/98 flex flex-col items-center justify-center p-4 backdrop-blur-md animate-in fade-in duration-300"
+          className="fixed inset-0 z-100 bg-[#081a2e]/98 flex flex-col items-center justify-center p-4 backdrop-blur-md animate-in fade-in duration-300"
           onClick={() => setSelectedImage(null)}
         >
           <button className="absolute top-8 right-8 text-white/50 hover:text-white text-5xl font-light">&times;</button>
