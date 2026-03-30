@@ -41,16 +41,19 @@ export const NeedsScanner = () => {
         {/* --- MAIN CONTAINER: Added items-center and mx-auto for mobile --- */}
         <div className="relative flex min-h-[450px] md:min-h-[420px] overflow-hidden rounded-sm shadow-xl border border-gray-100 mx-auto">
           
-          {/* Background Image Layer */}
-          <div className="absolute inset-0 z-0">
-            <img 
-              src={current.img} 
-              alt={current.question} 
-              className="w-full h-full object-cover transition-opacity duration-700"
-            />
-            {/* Gradient: Switched to-b for mobile so text stays readable on top */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#081a2e]/90 via-[#081a2e]/60 to-transparent md:bg-gradient-to-br md:from-[#081a2e]/80 md:via-[#081a2e]/40 md:to-transparent"></div>
-          </div>
+{/* Background Image Layer */}
+<div className="absolute inset-0 z-0">
+  <img 
+    key={current.id} // Added key to trigger transition on slide change
+    src={current.img} 
+    alt={current.question} 
+    /* Changed: Added object-right for mobile, md:object-center for desktop */
+    className="w-full h-full object-cover object-right md:object-center transition-opacity duration-700 animate-in fade-in"
+  />
+  
+  {/* Gradient Overlay: Adjusted for better readability with right-aligned images */}
+  <div className="absolute inset-0 bg-gradient-to-r from-[#081a2e]/95 via-[#081a2e]/60 to-transparent md:bg-gradient-to-br md:from-[#081a2e]/80 md:via-[#081a2e]/40 md:to-transparent"></div>
+</div>
 
           {/* Content Area - Centered on mobile, Top-Left on Desktop */}
           <div className="relative z-10 w-full p-8 lg:p-14 text-white flex flex-col items-center md:items-start text-center md:text-left">
