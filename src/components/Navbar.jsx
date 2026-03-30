@@ -32,11 +32,11 @@ export const Navbar = () => {
     { name: 'Home', path: '/', type: 'link' },
     { name: 'Products', id: 'product-gallery', type: 'scroll' },
     { name: 'Featured Projects', path: '/projects', type: 'link' },
-    { name: 'How-To Center', path: '#', type: 'link' },
-    { name: 'Blog', path: '#', type: 'link' },
-    { name: 'Request a Quote', path: '#', type: 'link' },
-    { name: 'About Us', path: '#', type: 'link' },
-    { name: 'Contact Us', path: '#', type: 'link' },
+    { name: 'How-To Center', path: '/how-to', type: 'link' },
+    { name: 'Blog', path: '/blog', type: 'link' },
+    { name: 'Request a Quote', id: 'contact-footer', type: 'scroll' },
+    { name: 'About Us', path: '#', type: 'link' }, 
+    { name: 'Contact Us', id: 'contact-footer', type: 'scroll' },
   ];
 
   return (
@@ -64,13 +64,13 @@ export const Navbar = () => {
           </div>
 
           {/* DESKTOP MENU */}
-          <div className="hidden lg:flex items-center gap-x-6 min-w-max">
+          <div className="hidden lg:flex items-center gap-x-5 min-w-max">
             {menuItems.map((item) => (
               item.type === 'scroll' ? (
                 <button 
                   key={item.name}
                   onClick={() => handleNavClick(item.id)}
-                  className="text-[11px] font-black uppercase tracking-[0.15em] text-gray-400 hover:text-blue-500 transition-colors"
+                  className="text-[10px] font-black uppercase tracking-[0.12em] text-gray-400 hover:text-blue-500 transition-colors"
                 >
                   {item.name}
                 </button>
@@ -78,7 +78,7 @@ export const Navbar = () => {
                 <Link 
                   key={item.name}
                   to={item.path}
-                  className={`text-[11px] font-black uppercase tracking-[0.15em] transition border-b-2 pb-1 ${
+                  className={`text-[10px] font-black uppercase tracking-[0.12em] transition border-b-2 pb-1 ${
                     location.pathname === item.path 
                     ? 'text-blue-500 border-blue-500' 
                     : 'text-gray-400 border-transparent hover:text-[#081a2e]'

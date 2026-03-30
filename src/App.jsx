@@ -15,7 +15,9 @@ import { Testimonials } from './components/Testimonials';
 import { HowToOrder } from './components/HowToOrder';
 
 // New Page Components
-import { FeaturedProjects } from './components/FeaturedProjects';
+import FeaturedProjectsPage from './pages/FeaturedProjectsPage';
+import HowToCenterPage from './pages/HowToCenterPage';
+import BlogPage from './pages/BlogPage';
 
 // Helper: Forces page to top on route change
 const ScrollToTop = () => {
@@ -85,12 +87,9 @@ function App() {
         <main className="flex-grow w-full flex flex-col items-center">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            
-            <Route path="/projects" element={
-              <div className="w-full">
-                <FeaturedProjects />
-              </div>
-            } />
+            <Route path="/projects" element={ <div className="w-full"><FeaturedProjectsPage /></div>} />
+            <Route path="/how-to" element={ <div className="w-full"><HowToCenterPage /></div>} />
+            <Route path="/blog" element={ <div className="w-full"><BlogPage /></div>} />
           </Routes>
         </main>
 
