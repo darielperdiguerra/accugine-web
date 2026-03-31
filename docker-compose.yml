@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  # The PostgreSQL Database
+  db:
+    image: postgres:15
+    container_name: accugine_db
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: accugine_password
+      POSTGRES_DB: accugine_quotes
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # Your Backend Server
+  backend:
+    build: ./backend
+    container_name: accugine_backend
+    restart: always # Added for stability
+    ports:
+      - "5000:5000"
+    environment:
+      DB_HOST: db
+      DB_USER: admin
+      DB_PASSWORD: accugine_password
+      DB_NAME: accugine_quotes
+      EMAILJS_SERVICE_ID: your_id
+    depends_on:
+      - db
+
+volumes:
+  postgres_data: # Removed the text that was causing the error
