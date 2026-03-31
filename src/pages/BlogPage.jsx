@@ -1,12 +1,12 @@
 import React from 'react';
-import { BlogFeatured } from '../components/BlogFeatured'; 
+import { Blog } from '../components/Blog'; 
 // import { OtherBlogSections } from '../components/OtherBlogSections';
 
 
 const BlogPage = () => {
   return (
     <main className="w-full pt-28">
-      <BlogFeatured />
+      <Blog />
     </main>
   );
 };

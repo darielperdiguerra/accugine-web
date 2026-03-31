@@ -44,7 +44,7 @@ const HomePage = () => {
       const timer = setTimeout(() => {
         const element = document.getElementById(targetId);
         if (element) {
-          const offset = 112; 
+          const offset = 112; // Matches your Navbar height (h-28)
           const bodyRect = document.body.getBoundingClientRect().top;
           const elementRect = element.getBoundingClientRect().top;
           const elementPosition = elementRect - bodyRect;
@@ -55,6 +55,7 @@ const HomePage = () => {
             behavior: 'smooth'
           });
         }
+        // Clean up state so it doesn't re-scroll on refresh
         window.history.replaceState({}, document.title);
       }, 100);
       return () => clearTimeout(timer);
@@ -82,19 +83,28 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen bg-white min-w-[375px] overflow-x-hidden flex flex-col">
+      
+      {/* QA NOTE: We removed 'overflow-x-hidden' from this div. 
+          Sticky elements (Navbar) often fail if a direct parent has overflow-hidden.
+      */}
+      <div className="min-h-screen bg-white min-w-[375px] flex flex-col">
+        
         <Navbar />
         
-        <main className="flex-grow w-full flex flex-col items-center">
+        {/* We moved 'overflow-x-hidden' here. 
+            This prevents horizontal scroll bugs from animations/hero images 
+            without breaking the Navbar's sticky position.
+        */}
+        <main className="flex-grow w-full flex flex-col items-center overflow-x-hidden">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/projects" element={<div className="w-full"><FeaturedProjectsPage /></div>} />
             <Route path="/how-to" element={<div className="w-full"><HowToCenterPage /></div>} />
             
-            {/* PASS POSTS TO BLOG LIST */}
+            {/* Blog List */}
             <Route path="/blog" element={<div className="w-full"><BlogPage posts={POSTS} /></div>} />
             
-            {/* PASS POSTS TO DETAIL PAGE */}
+            {/* Blog Detail */}
             <Route path="/blog/:slug" element={<BlogPostDetail posts={POSTS} />} />
             
             <Route path="/request-quote" element={<RequestQuotePage />} />

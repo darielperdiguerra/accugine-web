@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavHashLink } from 'react-router-hash-link';
 
 const PROJECTS = [
   {
@@ -17,13 +18,13 @@ const PROJECTS = [
   {
     id: 2,
     title: "Team Tankers Int'l",
-    category: "Sunscreen blinds and Blackout Blinds (in white)",
+    category: "Sunscreen and Blackout Blinds",
     description: "Unlike roller shades, sunscreen blinds offer optimum protection from glare and heat whilst allowing natural light.",
     images: ["/featured/featured-tt-1.png", "/featured/featured-tt-2.png"],
     tag: "Corporate Excellence"
   },
   {
-    id: 2,
+    id: 3,
     title: "Qdynamics",
     category: "Blackout Blinds and Curtains",
     description: "Nothing beats Blackout Roller Blinds in covering commercial spaces' windows, while Blackout curtains are great in adding elegance and formal ambiance to any function hall.",
@@ -32,6 +33,8 @@ const PROJECTS = [
   }
 ];
 
+// INTERNAL COMPONENT: ProjectSlider
+// Defined here to ensure FeaturedProjects can always find it.
 const ProjectSlider = ({ project, onImageClick }) => {
   const [current, setCurrent] = useState(0);
 
@@ -43,6 +46,8 @@ const ProjectSlider = ({ project, onImageClick }) => {
     e.stopPropagation(); 
     setCurrent(current === 0 ? project.images.length - 1 : current - 1); 
   };
+
+  if (!project.images || project.images.length === 0) return <div className="bg-gray-200 aspect-video rounded-lg" />;
 
   return (
     <div 
@@ -62,16 +67,16 @@ const ProjectSlider = ({ project, onImageClick }) => {
       
       {project.images.length > 1 && (
         <>
-          <button onClick={prev} className="absolute left-6 top-1/2 -translate-y-1/2 z-20 p-4 bg-white/10 hover:bg-white/30 backdrop-blur-md text-white border border-white/20 active:scale-90 transition-all opacity-0 group-hover:opacity-100 rounded-full">
+          <button onClick={prev} className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-3 bg-black/20 hover:bg-blue-500 backdrop-blur-md text-white transition-all opacity-0 group-hover:opacity-100 rounded-full">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="w-5 h-5"><path d="M15.75 19.5L8.25 12l7.5-7.5" /></svg>
           </button>
-          <button onClick={next} className="absolute right-6 top-1/2 -translate-y-1/2 z-20 p-4 bg-white/10 hover:bg-white/30 backdrop-blur-md text-white border border-white/20 active:scale-90 transition-all opacity-0 group-hover:opacity-100 rounded-full">
+          <button onClick={next} className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-3 bg-black/20 hover:bg-blue-500 backdrop-blur-md text-white transition-all opacity-0 group-hover:opacity-100 rounded-full">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="w-5 h-5"><path d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
           </button>
         </>
       )}
       
-      <div className="absolute bottom-6 right-6 z-20 bg-[#081a2e]/70 backdrop-blur-md px-4 py-1 text-white text-[10px] font-black tracking-widest border border-white/10">
+      <div className="absolute bottom-4 right-4 z-20 bg-[#081a2e]/80 backdrop-blur-sm px-3 py-1 text-white text-[9px] font-black tracking-widest border border-white/10">
          {current + 1} / {project.images.length}
       </div>
     </div>
@@ -85,44 +90,36 @@ export const FeaturedProjects = () => {
     <section id="featured-projects" className="py-20 bg-white font-proxima overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* NEW TOP BAR & SMALLER HEADER */}
+        {/* HEADER SECTION */}
         <div className="mb-24 flex flex-col items-center md:items-start">
-          {/* Top Link */}
           <div className="flex items-center gap-2 mb-6 group cursor-pointer">
             <span className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">
-              You may also want to check:
+              Check out:
             </span>
-            <button className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-500 border-b border-blue-500/30 group-hover:border-blue-500 transition-all">
+            <NavHashLink 
+              smooth 
+              to="/about#major-clients" 
+              className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-500 border-b border-blue-500/30 group-hover:border-blue-500 transition-all"
+            >
               Our Major Clients →
-            </button>
+            </NavHashLink>
           </div>
 
-          {/* Smaller, More Refined Header */}
-          <div className="space-y-4 max-w-3xl">
-            <h2 className="text-blue-400 text-[9px] font-black uppercase tracking-[0.5em]">
-              Portfolio
-            </h2>
+          <div className="space-y-4 max-w-3xl text-center md:text-left">
+            <h2 className="text-blue-400 text-[9px] font-black uppercase tracking-[0.5em]">Portfolio</h2>
             <h1 className="text-3xl md:text-5xl font-black text-[#081a2e] tracking-tighter uppercase leading-none">
               Featured <span className="text-blue-500 italic">Projects</span>
             </h1>
-            <p className="text-gray-500 text-sm md:text-base leading-relaxed font-medium">
-              Check out our favorite projects representing our window blinds from each category! 
-              Here are some of the most challenging, interesting, and enjoyable projects that 
-              we’ve had the pleasure of accomplishing for our clients.
-            </p>
           </div>
-          
-          <div className="mt-8 h-[2px] w-16 bg-blue-500/20"></div>
         </div>
 
-        {/* PROJECTS LIST (Keep the rest of the mapping logic from the previous code) */}
+        {/* PROJECTS MAPPING */}
         <div className="space-y-32 md:space-y-48">
           {PROJECTS.map((project, index) => (
             <div 
               key={project.id} 
               className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12 lg:gap-20`}
             >
-              {/* Image Slider Column */}
               <div className="w-full lg:w-3/5">
                 <ProjectSlider 
                   project={project} 
@@ -130,18 +127,19 @@ export const FeaturedProjects = () => {
                 />
               </div>
 
-              {/* Navy Text Box Column */}
-              <div className="w-full lg:w-2/5 flex flex-col items-center lg:items-start text-center lg:text-left">
-                <div className="max-w-md bg-[#081a2e] p-8 md:p-12 shadow-2xl relative w-full">
+              <div className="w-full lg:w-2/5 flex flex-col items-center lg:items-start">
+                <div className="max-w-md bg-[#081a2e] p-8 md:p-12 shadow-2xl relative w-full text-center lg:text-left">
                   <div className={`absolute top-0 ${index % 2 === 0 ? 'left-0' : 'right-0'} w-2 h-full bg-blue-500`}></div>
                   <span className="text-blue-400 text-[10px] font-black uppercase tracking-[0.4em] block mb-4">{project.tag}</span>
                   <h3 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tighter leading-tight mb-4">{project.title}</h3>
-                  <h4 className="text-blue-200 font-black uppercase italic text-lg mb-6 flex items-center gap-3 justify-center lg:justify-start">
-                    {project.category}
-                    <span className="h-[1px] w-8 bg-white/20"></span>
-                  </h4>
-                  <p className="text-gray-300 text-sm md:text-base leading-relaxed font-medium mb-8">{project.description}</p>
-                  <button className="text-white text-[10px] font-black uppercase tracking-[0.2em] border-b-2 border-blue-500 pb-1 hover:text-blue-400 transition-all">Inquire Now →</button>
+                  <h4 className="text-blue-200 font-black uppercase italic text-lg mb-6">{project.category}</h4>
+                  <p className="text-gray-300 text-sm md:text-base leading-relaxed mb-8">{project.description}</p>
+                  <NavHashLink 
+                    to="/request-quote" 
+                    className="text-white text-[10px] font-black uppercase tracking-[0.2em] border-b-2 border-blue-500 pb-1 hover:text-blue-400 transition-all"
+                  >
+                    Inquire Now →
+                  </NavHashLink>
                 </div>
               </div>
             </div>
@@ -149,7 +147,23 @@ export const FeaturedProjects = () => {
         </div>
       </div>
 
-      {/* Lightbox logic remains the same... */}
+      {/* BASIC LIGHTBOX (To prevent "Undefined" crashes) */}
+      {lightbox.isOpen && lightbox.project && (
+        <div 
+          className="fixed inset-0 z-[100] bg-black/95 flex flex-col items-center justify-center p-4 backdrop-blur-sm"
+          onClick={() => setLightbox({ ...lightbox, isOpen: false })}
+        >
+          <img 
+            src={lightbox.project.images[lightbox.index]} 
+            className="max-w-full max-h-[80vh] object-contain shadow-2xl border border-white/10" 
+            alt="Enlarged Project"
+          />
+          <div className="mt-8 text-center text-white">
+            <p className="text-xl font-black uppercase italic tracking-tighter">{lightbox.project.title}</p>
+            <p className="text-blue-400 text-[10px] font-black uppercase tracking-[0.3em] mt-2">Accugine Project Gallery</p>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

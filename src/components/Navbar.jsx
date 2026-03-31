@@ -6,7 +6,6 @@ export const Navbar = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // Navigation Logic: If not on Home, go Home first then scroll.
   const handleNavClick = (id) => {
     setIsOpen(false);
     if (location.pathname !== '/') {
@@ -14,7 +13,7 @@ export const Navbar = () => {
     } else {
       const element = document.getElementById(id);
       if (element) {
-        const offset = 112; // Navbar height offset
+        const offset = 112; 
         const bodyRect = document.body.getBoundingClientRect().top;
         const elementRect = element.getBoundingClientRect().top;
         const elementPosition = elementRect - bodyRect;
@@ -40,13 +39,14 @@ export const Navbar = () => {
   ];
 
   return (
-    <nav className="sticky top-0 z-[100] bg-white text-[#081a2e] shadow-sm border-b border-gray-100 font-proxima w-full">
+    <nav className="sticky top-0 z-[100] w-full bg-white text-[#081a2e] shadow-sm border-b border-gray-100 font-proxima">
+      
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex justify-between items-center h-28">
           
           {/* Mobile Burger */}
           <div className="flex lg:hidden w-12 shrink-0">
-            <button onClick={() => setIsOpen(!isOpen)} className="p-2 text-[#081a2e] transition-transform active:scale-90">
+            <button onClick={() => setIsOpen(!isOpen)} className="p-2 text-[#081a2e] transition-transform active:scale-90 outline-none">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-8 h-8">
                 {isOpen ? 
                   <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /> : 
@@ -64,13 +64,13 @@ export const Navbar = () => {
           </div>
 
           {/* DESKTOP MENU */}
-          <div className="hidden lg:flex items-center gap-x-5 min-w-max">
+          <div className="hidden lg:flex items-center gap-x-6 min-w-max">
             {menuItems.map((item) => (
               item.type === 'scroll' ? (
                 <button 
                   key={item.name}
                   onClick={() => handleNavClick(item.id)}
-                  className="text-[10px] font-black uppercase tracking-[0.12em] text-gray-400 hover:text-blue-500 transition-colors"
+                  className="text-[10px] font-black uppercase tracking-[0.15em] text-gray-400 hover:text-blue-500 transition-colors"
                 >
                   {item.name}
                 </button>
@@ -78,7 +78,7 @@ export const Navbar = () => {
                 <Link 
                   key={item.name}
                   to={item.path}
-                  className={`text-[10px] font-black uppercase tracking-[0.12em] transition border-b-2 pb-1 ${
+                  className={`text-[10px] font-black uppercase tracking-[0.15em] transition-all border-b-2 pb-1 ${
                     location.pathname === item.path 
                     ? 'text-blue-500 border-blue-500' 
                     : 'text-gray-400 border-transparent hover:text-[#081a2e]'
@@ -96,13 +96,13 @@ export const Navbar = () => {
       
       {/* MOBILE DROPDOWN */}
       <div className={`lg:hidden transition-all duration-500 ease-in-out bg-white border-t border-gray-100 overflow-hidden ${isOpen ? 'max-h-[800px] opacity-100' : 'max-h-0 opacity-0'}`}>
-        <div className="px-6 py-10 flex flex-col space-y-6 text-center">
+        <div className="px-6 py-12 flex flex-col space-y-8 text-center bg-gray-50/50">
           {menuItems.map((item) => (
             item.type === 'scroll' ? (
               <button 
                 key={item.name}
                 onClick={() => handleNavClick(item.id)}
-                className="text-sm font-black uppercase tracking-widest text-[#081a2e]"
+                className="text-xs font-black uppercase tracking-[0.2em] text-[#081a2e] hover:text-blue-500 transition-colors"
               >
                 {item.name}
               </button>
@@ -111,7 +111,7 @@ export const Navbar = () => {
                 key={item.name}
                 to={item.path}
                 onClick={() => setIsOpen(false)}
-                className={`text-sm font-black uppercase tracking-widest ${location.pathname === item.path ? 'text-blue-500' : 'text-[#081a2e]'}`}
+                className={`text-xs font-black uppercase tracking-[0.2em] transition-colors ${location.pathname === item.path ? 'text-blue-500' : 'text-[#081a2e]'}`}
               >
                 {item.name}
               </Link>

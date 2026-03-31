@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const CORE_VALUES = [
   { name: "God-centeredness", desc: "Our foundation in faith guides every business decision and interaction." },
@@ -18,6 +19,35 @@ const PRODUCTS = [
 ];
 
 export const About = () => {
+  const location = useLocation();
+
+  // Handle scrolling when arriving from a HashLink (e.g., /about#major-clients)
+  useEffect(() => {
+    if (location.hash) {
+      const targetId = location.hash.replace('#', '');
+      
+      // Small timeout to ensure the DOM is ready and images are loading
+      const timer = setTimeout(() => {
+        const element = document.getElementById(targetId);
+        if (element) {
+          // 112px matches your Navbar height (h-28)
+          const offset = 112; 
+          const bodyRect = document.body.getBoundingClientRect().top;
+          const elementRect = element.getBoundingClientRect().top;
+          const elementPosition = elementRect - bodyRect;
+          const offsetPosition = elementPosition - offset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }, 150); 
+
+      return () => clearTimeout(timer);
+    }
+  }, [location]);
+
   return (
     <section className="bg-white font-proxima">
       
@@ -28,7 +58,6 @@ export const About = () => {
           Accuracy & <span className="text-blue-500 italic font-serif">Engineering</span>
         </h1>
         
-        {/* ROW 1: Window Blinds Focus */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center mb-24">
           <div className="lg:col-span-4 order-2 lg:order-1">
             <div className="p-12 bg-gray-50 rounded-2xl border border-gray-100 flex items-center justify-center group transition-all duration-500 hover:shadow-xl hover:bg-white">
@@ -39,14 +68,13 @@ export const About = () => {
               />
             </div>
           </div>
-          <div className="lg:col-span-8 order-1 lg:order-2">
+          <div className="lg:col-span-8 order-1 lg:order-2 text-center lg:text-left">
             <p className="text-gray-500 font-medium leading-relaxed text-lg lg:text-xl">
               <span className="text-[#081a2e] font-black underline decoration-blue-500 underline-offset-4">Accugine</span> is a unique and emerging enterprise specializing in the supply of <span className="text-blue-500 font-black">window blinds</span>, fabrication and installation of aluminum and glass products serving the local construction industry in the Philippines.
             </p>
           </div>
         </div>
 
-        {/* ROW 2: Aluminum & Glass Focus */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-8">
             <p className="text-gray-500 font-medium leading-relaxed text-lg lg:text-xl border-l-8 border-[#081a2e] pl-8">
@@ -88,7 +116,7 @@ export const About = () => {
         </div>
       </div>
 
-      {/* 3. ENHANCED CORE VALUES */}
+      {/* 3. CORE VALUES */}
       <div className="bg-[#081a2e] py-32 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="mb-20">
@@ -106,19 +134,15 @@ export const About = () => {
             ))}
           </div>
         </div>
-        <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black/20 to-transparent"></div>
       </div>
 
-      {/* 4. PRODUCT RANGE (Editorial Style) */}
+      {/* 4. PRODUCT RANGE */}
       <div className="max-w-7xl mx-auto px-6 py-32">
         <div className="flex flex-col lg:flex-row justify-between items-end mb-20 gap-8">
           <div>
             <h4 className="text-blue-500 text-[10px] font-black uppercase tracking-[0.4em] mb-4">What we offer</h4>
             <h3 className="text-4xl md:text-6xl font-black text-[#081a2e] uppercase tracking-tighter">Product <span className="italic text-blue-500">Range</span></h3>
           </div>
-          <p className="text-gray-400 font-bold uppercase tracking-widest text-[10px] max-w-xs text-right">
-            Premium Fabrication • Expert Installation • Modern Design
-          </p>
         </div>
         
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
@@ -134,7 +158,8 @@ export const About = () => {
       </div>
 
       {/* 5. MAJOR CLIENTS */}
-      <div className="max-w-7xl mx-auto px-6 py-32 text-center border-t border-gray-100">
+      {/* scroll-mt-28 is a Tailwind utility that adds space above the element when scrolling to it */}
+      <div id="major-clients" className="max-w-7xl mx-auto px-6 py-32 text-center border-t border-gray-100 scroll-mt-28">
         <h2 className="text-[#081a2e] text-3xl md:text-5xl font-black uppercase tracking-tighter mb-16">
           Major <span className="text-blue-500 italic">Clients</span>
         </h2>
