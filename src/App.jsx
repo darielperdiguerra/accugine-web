@@ -13,11 +13,14 @@ import { NeedsScanner } from './components/NeedsScanner';
 import { TrustLogos } from './components/TrustLogos';
 import { Testimonials } from './components/Testimonials';
 import { HowToOrder } from './components/HowToOrder';
+import { BlogPostDetail } from './components/BlogPostDetail';
 
 // New Page Components
 import FeaturedProjectsPage from './pages/FeaturedProjectsPage';
 import HowToCenterPage from './pages/HowToCenterPage';
 import BlogPage from './pages/BlogPage';
+import RequestQuotePage from './pages/RequestQuotePage'
+import AboutPage from './pages/AboutPage'
 
 // Helper: Forces page to top on route change
 const ScrollToTop = () => {
@@ -90,6 +93,9 @@ function App() {
             <Route path="/projects" element={ <div className="w-full"><FeaturedProjectsPage /></div>} />
             <Route path="/how-to" element={ <div className="w-full"><HowToCenterPage /></div>} />
             <Route path="/blog" element={ <div className="w-full"><BlogPage /></div>} />
+            <Route path="/blog/:slug" element={<BlogPostDetail />} />
+            <Route path="/request-quote" element={<RequestQuotePage />} />
+            <Route path="/about" element={<AboutPage />} />
           </Routes>
         </main>
 

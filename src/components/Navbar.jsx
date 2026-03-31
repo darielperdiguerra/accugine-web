@@ -34,8 +34,8 @@ export const Navbar = () => {
     { name: 'Featured Projects', path: '/projects', type: 'link' },
     { name: 'How-To Center', path: '/how-to', type: 'link' },
     { name: 'Blog', path: '/blog', type: 'link' },
-    { name: 'Request a Quote', id: 'contact-footer', type: 'scroll' },
-    { name: 'About Us', path: '#', type: 'link' }, 
+    { name: 'Request a Quote', path: '/request-quote', type: 'link' },
+    { name: 'About Us', path: '/about', type: 'link' }, 
     { name: 'Contact Us', id: 'contact-footer', type: 'scroll' },
   ];
 
