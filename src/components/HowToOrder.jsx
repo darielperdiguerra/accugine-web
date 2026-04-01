@@ -1,26 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; // 1. Added Link import
 
 const ORDER_METHODS = [
   {
-    img: "/order-measure.png",
     title: "MEASURE",
     desc: "(BY YOU OR US)",
     sub: "Provide your own dimensions or request our team for on-site measurement."
   },
   {
-    img: "/order-reach.png",
-    title: "REACH US",
+    title: "REACH US", 
     desc: "VIA FB / EMAIL / PHONE",
     sub: "Send your inquiries to our team in Biñan for an instant estimate."
   },
   {
-    img: "/order-delivery.png",
     title: "DELIVERY",
     desc: "OR PICK-UP",
     sub: "Choose direct delivery to your location or pick up from our facility."
   },
   {
-    img: "/order-install.png",
     title: "INSTALLATION",
     desc: "(BY YOU OR US)",
     sub: "Expert installation by our professional crew or DIY-ready kits."
@@ -29,49 +26,67 @@ const ORDER_METHODS = [
 
 export const HowToOrder = () => {
   return (
-    /* min-w-[375px] ensures the grid doesn't collapse awkwardly on mobile */
-    <section className="py-24 bg-white font-proxima border-t border-gray-100 min-w-[375px]">
+    <section id="how-to-order" className="py-24 bg-white font-proxima overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         
-        {/* Section Header - Uses Global Base Styles */}
-        <div className="text-center mb-20">
-          <span className="label-text">Order Options</span>
-          <h1 className="tracking-tighter">
-            How to <span className="text-blue-500">Order</span>
+        <div className="text-center mb-24">
+          <span className="text-blue-500 text-[10px] font-black uppercase tracking-[0.5em] mb-4 block">
+            The Process
+          </span>
+          <h1 className="text-4xl md:text-6xl font-black text-[#081a2e] tracking-tighter uppercase">
+            HOW TO <span className="text-blue-500 italic">ORDER</span>
           </h1>
-          <div className="w-16 h-[4px] bg-blue-500 mx-auto mt-8"></div>
+          <div className="w-20 h-1 bg-blue-500 mx-auto mt-8"></div>
         </div>
 
-        {/* 4-Column Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+          
           {ORDER_METHODS.map((item, index) => (
-            <div key={index} className="flex flex-col items-center text-center group bg-gray-50 p-10 rounded-sm hover:bg-[#000066] transition-all duration-500 shadow-sm hover:shadow-2xl border border-gray-100">
-              
-              {/* BIGGER PNG IMAGE */}
-              <div className="w-24 h-24 mb-8 transition-transform duration-500 group-hover:scale-110">
+            <div 
+              key={index} 
+              className="group relative flex flex-col items-center text-center bg-white p-10 rounded-2xl transition-all duration-500 border border-gray-100 hover:bg-[#081a2e] hover:shadow-2xl hover:-translate-y-2"
+            >
+              <span className="absolute top-4 right-6 text-5xl font-black text-gray-50 group-hover:text-white/5 transition-colors duration-500 italic">
+                0{index + 1}
+              </span>
+
+              <div className="w-20 h-20 mb-8 relative z-10">
+                <div className="absolute inset-0 bg-blue-500/10 rounded-full scale-150 group-hover:bg-blue-500/20 transition-all duration-500"></div>
                 <img 
-                  src={item.img} 
+                  src={`/order-${item.title.toLowerCase().replace(' ', '-')}.png`} 
                   alt={item.title} 
-                  className="w-full h-full object-contain grayscale group-hover:grayscale-0 group-hover:brightness-200 transition-all duration-500" 
+                  className="w-full h-full object-contain relative z-20 grayscale group-hover:grayscale-0 group-hover:invert transition-all duration-500" 
                 />
               </div>
 
-              {/* Text Content - Uses Global H3 Base Style */}
-              <h3 className="group-hover:text-white transition-colors">
+              <h3 className="text-xl font-black text-[#081a2e] tracking-tight mb-2 group-hover:text-white transition-colors">
                 {item.title}
               </h3>
               
-              {/* Specialized Sub-label */}
-              <p className="text-blue-500 font-black text-[12px] uppercase tracking-widest mb-6 group-hover:text-blue-300 transition-colors">
+              <p className="text-blue-600 font-black text-[10px] uppercase tracking-[0.2em] mb-6 group-hover:text-blue-400 transition-colors">
                 {item.desc}
               </p>
               
-              {/* Description - Uses Global P Base Style */}
-              <p className="group-hover:text-white/80 font-bold opacity-90 transition-colors">
+              <p className="text-gray-500 text-sm font-medium leading-relaxed group-hover:text-white/70 transition-colors">
                 {item.sub}
               </p>
+
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-1 bg-blue-500 group-hover:w-full transition-all duration-500 rounded-b-2xl"></div>
             </div>
           ))}
+        </div>
+
+
+        <div className="mt-20 text-center">
+          <p className="text-gray-400 text-[10px] font-black uppercase tracking-widest mb-6">
+            Ready to start your project?
+          </p>
+          <Link 
+            to="/request-quote" 
+            className="inline-block px-10 py-4 bg-[#081a2e] text-white font-black text-[11px] uppercase tracking-widest hover:bg-blue-600 transition-all rounded-sm shadow-xl shadow-blue-900/10"
+          >
+            Inquire Now →
+          </Link>
         </div>
 
       </div>

@@ -1,5 +1,4 @@
 import React from 'react';
-// Import only what you actually use
 import { FeaturedProjects } from '../components/FeaturedProjects'; 
 
 const FeaturedProjectsPage = () => {

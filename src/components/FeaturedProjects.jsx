@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavHashLink } from 'react-router-hash-link';
+import { Link } from 'react-router-dom';
 
 const PROJECTS = [
   {
@@ -33,8 +33,6 @@ const PROJECTS = [
   }
 ];
 
-// INTERNAL COMPONENT: ProjectSlider
-// Defined here to ensure FeaturedProjects can always find it.
 const ProjectSlider = ({ project, onImageClick }) => {
   const [current, setCurrent] = useState(0);
 
@@ -87,7 +85,7 @@ export const FeaturedProjects = () => {
   const [lightbox, setLightbox] = useState({ isOpen: false, project: null, index: 0 });
 
   return (
-    <section id="featured-projects" className="py-20 bg-white font-proxima overflow-hidden">
+    <section id="featured-projects" className="py-20 bg-white font-proxima overflow-hidden scroll-mt-28">
       <div className="max-w-7xl mx-auto px-6">
         
         {/* HEADER SECTION */}
@@ -96,13 +94,12 @@ export const FeaturedProjects = () => {
             <span className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">
               Check out:
             </span>
-            <NavHashLink 
-              smooth 
-              to="/about#major-clients" 
+            <Link 
+              to="/#trusted-badges" 
               className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-500 border-b border-blue-500/30 group-hover:border-blue-500 transition-all"
             >
               Our Major Clients →
-            </NavHashLink>
+            </Link>
           </div>
 
           <div className="space-y-4 max-w-3xl text-center md:text-left">
@@ -113,7 +110,6 @@ export const FeaturedProjects = () => {
           </div>
         </div>
 
-        {/* PROJECTS MAPPING */}
         <div className="space-y-32 md:space-y-48">
           {PROJECTS.map((project, index) => (
             <div 
@@ -134,12 +130,12 @@ export const FeaturedProjects = () => {
                   <h3 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tighter leading-tight mb-4">{project.title}</h3>
                   <h4 className="text-blue-200 font-black uppercase italic text-lg mb-6">{project.category}</h4>
                   <p className="text-gray-300 text-sm md:text-base leading-relaxed mb-8">{project.description}</p>
-                  <NavHashLink 
+                  <Link 
                     to="/request-quote" 
                     className="text-white text-[10px] font-black uppercase tracking-[0.2em] border-b-2 border-blue-500 pb-1 hover:text-blue-400 transition-all"
                   >
                     Inquire Now →
-                  </NavHashLink>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -147,7 +143,6 @@ export const FeaturedProjects = () => {
         </div>
       </div>
 
-      {/* BASIC LIGHTBOX (To prevent "Undefined" crashes) */}
       {lightbox.isOpen && lightbox.project && (
         <div 
           className="fixed inset-0 z-[100] bg-black/95 flex flex-col items-center justify-center p-4 backdrop-blur-sm"

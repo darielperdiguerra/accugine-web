@@ -26,7 +26,6 @@ export const About = () => {
     if (location.hash) {
       const targetId = location.hash.replace('#', '');
       
-      // Small timeout to ensure the DOM is ready and images are loading
       const timer = setTimeout(() => {
         const element = document.getElementById(targetId);
         if (element) {
@@ -158,7 +157,6 @@ export const About = () => {
       </div>
 
       {/* 5. MAJOR CLIENTS */}
-      {/* scroll-mt-28 is a Tailwind utility that adds space above the element when scrolling to it */}
       <div id="major-clients" className="max-w-7xl mx-auto px-6 py-32 text-center border-t border-gray-100 scroll-mt-28">
         <h2 className="text-[#081a2e] text-3xl md:text-5xl font-black uppercase tracking-tighter mb-16">
           Major <span className="text-blue-500 italic">Clients</span>

@@ -2,6 +2,7 @@
 
 @theme {
   --color-accugine-blue: #003366;
+  --color-navy-dark: #081a2e;
 }
 
 /* Global Layout Floor */
@@ -11,56 +12,74 @@
 
 body {
   min-width: 375px;
-  overflow-x: auto; 
   margin: 0;
   padding: 0;
-}
-
-#root {
-  min-width: 375px;
-  width: 100%;
+  -webkit-font-smoothing: antialiased;
+  /* Standardizing the base color */
+  @apply text-[#081a2e]; 
 }
 
 @layer base {
-  html {
-    font-size: 16px; /* Reset to standard base size */
-    color: #1a1a1a;
-  }
-
-  /* --- BALANCED HEADER SIZES --- */
-
+  /* --- REFINED MINI-HEADERS --- */
+  /* No '!' prefix allows components to easily override these sizes if needed */
+  
   h1 {
-    /* Hero & Main Titles: Reduced from 7xl to 5xl */
-    @apply text-3xl md:text-5xl font-black uppercase tracking-tight leading-tight mb-6;
+    @apply text-xl font-black uppercase tracking-[0.5em] leading-tight mb-8;
+    @media (min-width: 768px) {
+      @apply text-2xl;
+    }
   }
 
   h2 {
-    /* Section Headers: Reduced from 5xl to 3xl */
-    @apply text-2xl md:text-3xl font-black uppercase tracking-tight mb-4;
+    @apply text-lg font-black uppercase tracking-[0.4em] mb-6;
+    @media (min-width: 768px) {
+      @apply text-xl;
+    }
   }
 
   h3 {
-    /* Card Titles: Reduced from 2xl to xl */
-    @apply text-lg md:text-xl font-extrabold uppercase tracking-wide mb-3;
+    @apply text-base font-black uppercase tracking-[0.3em] mb-4;
   }
 
-  /* Section Labels (The small text above headers) */
-  .label-text {
-    @apply text-[11px] md:text-[12px] font-black uppercase tracking-[0.4em] text-gray-500 mb-3 block;
-  }
-
-  /* Paragraphs: Leaner and more standard */
+  /* --- LARGE DOMINANT BODY TEXT --- */
+  
   p {
-    @apply text-sm md:text-base leading-relaxed font-medium mb-4 opacity-90;
+    /* Paragraphs: Large and Premium by default */
+    @apply text-xl leading-relaxed font-medium mb-8;
+    @media (min-width: 768px) {
+      @apply text-2xl;
+    }
+  }
+
+  /* Section Labels */
+  .label-text {
+    @apply text-[10px] font-black uppercase tracking-[0.6em] mb-4 block;
   }
 }
 
 @layer components {
+  /* --- SPECIFICATION TABLE DATA SHEET --- */
+  /* This targets tables specifically to make them small/compact */
+  .spec-table p {
+    @apply text-[11px] md:text-[13px] leading-tight mb-0 font-bold;
+  }
+
+  .spec-table td, 
+  .spec-table th {
+    @apply p-4 md:p-5 border-gray-100;
+  }
+
+  .spec-label {
+    @apply text-[9px] md:text-[10px] font-black uppercase tracking-widest text-[#081a2e];
+  }
+
+  /* --- BUTTONS & NAV --- */
   .nav-link {
-    @apply text-[11px] font-black text-gray-700 hover:text-blue-500 tracking-[0.2em] transition uppercase whitespace-nowrap;
+    @apply text-[10px] font-black text-gray-700 hover:text-blue-500 tracking-[0.3em] transition uppercase whitespace-nowrap;
   }
   
-  .mobile-link {
-    @apply text-sm font-black text-gray-800 uppercase tracking-widest hover:text-blue-500;
+  .btn-primary {
+    @apply bg-[#081a2e] text-white px-10 py-5 font-black uppercase tracking-[0.4em] text-[10px] hover:bg-blue-600 transition-all active:scale-95;
   }
 }
+
