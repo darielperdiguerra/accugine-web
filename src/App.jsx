@@ -34,7 +34,7 @@ import { WoodenBlinds } from './pages/product/WoodenBlinds';
 import { MotorizedBlinds } from './pages/product/MotorizedBlinds'; 
 import { FoldingDoors } from './pages/product/FoldingDoors'; 
 
-// Helper: Forces page to top on route change
+// HELPER: Forces page to top on route change
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -46,29 +46,15 @@ const ScrollToTop = () => {
 // --- HOME PAGE LAYOUT ---
 const HomePage = () => {
   const location = useLocation();
-  const [showModal, setShowModal] = useState(false);
 
-  // NEWSLETTER TIMER: Controlled system uplink
-  useEffect(() => {
-    const hasJoined = localStorage.getItem('accugine_newsletter_joined');
-    
-    // Only trigger if user hasn't joined yet
-    if (!hasJoined) {
-      const timer = setTimeout(() => {
-        setShowModal(true);
-      }, 8000); // 8-second delay for engineering precision
-      return () => clearTimeout(timer);
-    }
-  }, []);
-
-  // ANCHOR SCROLL LOGIC: For cross-page navigation (e.g., from product page to Home sections)
+  // ANCHOR SCROLL LOGIC: For cross-page navigation
   useEffect(() => {
     if (location.state?.scrollTo) {
       const targetId = location.state.scrollTo;
       const timer = setTimeout(() => {
         const element = document.getElementById(targetId);
         if (element) {
-          const offset = 100; // Adjusted for Navbar height
+          const offset = 100; 
           const bodyRect = document.body.getBoundingClientRect().top;
           const elementRect = element.getBoundingClientRect().top;
           const elementPosition = elementRect - bodyRect;
@@ -79,7 +65,6 @@ const HomePage = () => {
             behavior: 'smooth'
           });
         }
-        // Clear state after scroll
         window.history.replaceState({}, document.title);
       }, 100);
       return () => clearTimeout(timer);
@@ -88,9 +73,6 @@ const HomePage = () => {
 
   return (
     <>
-      {/* 1. System Overlay: Only active on Homepage context */}
-      <QuoteNewsletter show={showModal} onClose={() => setShowModal(false)} />
-      
       <Hero />
       <SocialProof />
       <div id="product-gallery" className="w-full"><ProductGallery /></div>
@@ -104,9 +86,26 @@ const HomePage = () => {
 
 // --- MAIN APP ENTRY ---
 function App() {
+  const [showModal, setShowModal] = useState(false);
+
+  // GLOBAL NEWSLETTER TRIGGER: Fires on any page after 8 seconds
+  useEffect(() => {
+    const hasJoined = localStorage.getItem('accugine_newsletter_joined');
+    
+    if (!hasJoined) {
+      const timer = setTimeout(() => {
+        setShowModal(true);
+      }, 8000); 
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   return (
     <Router>
       <ScrollToTop />
+      
+      {/* Newsletter is now global - sits above all routes */}
+      <QuoteNewsletter show={showModal} onClose={() => setShowModal(false)} />
     
       <div className="min-h-screen bg-white min-w-[375px] flex flex-col font-proxima">
         
@@ -136,7 +135,6 @@ function App() {
           </Routes>
         </main>
 
-        {/* 2. Global Footer: Bottom anchoring for all pages */}
         <div id="contact-footer" className="w-full">
           <Footer />
         </div>

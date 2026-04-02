@@ -30,11 +30,13 @@ export const Hero = () => {
   }, [slides.length]);
 
   return (
-    <section className="relative w-full bg-white pt-32 pb-6 font-proxima overflow-hidden">
+    <section className="relative w-full bg-white pt-20 md:pt-32 pb-6 font-proxima overflow-hidden">
       <div className="max-w-[1700px] mx-auto px-4 sm:px-8">
         
-        <div className="relative h-[600px] md:h-[700px] lg:h-[80vh] overflow-hidden bg-[#081a2e] shadow-2xl rounded-[2.5rem] group border border-gray-100">
+        {/* SECTION HEIGHT: Reduced to 65vh to avoid "too tall" look */}
+        <div className="relative h-[400px] md:h-[500px] lg:h-[65vh] overflow-hidden bg-[#081a2e] shadow-2xl rounded-[1.5rem] md:rounded-[2.5rem] group border border-gray-100">
           
+          {/* SLIDE IMAGES */}
           {slides.map((slide, index) => (
             <div 
               key={index} 
@@ -49,47 +51,48 @@ export const Hero = () => {
                   index === currentIndex ? 'scale-110' : 'scale-100'
                 }`} 
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#081a2e]/90 via-[#081a2e]/20 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#081a2e]/95 via-[#081a2e]/20 to-transparent"></div>
             </div>
           ))}
 
+          {/* TOP RIGHT HOTLINE - Compacted */}
           <div className="absolute top-6 right-6 z-30 hidden lg:block">
-            <div className="backdrop-blur-md bg-white/5 border border-white/10 px-4 py-2 rounded-xl text-right shadow-xl">
-               <span className="text-blue-400 text-[11px] font-black uppercase tracking-[0.6em] mb-0.5 block opacity-80">Hotline</span>
-               <p className="text-white text-[11px] font-black tracking-widest mb-0.5 leading-none">0917 872 6779 </p>
-               <p className="text-white/20 text-[11px] font-black tracking-widest mb-0.5 italic leading-none">Biñan • Laguna </p>
+            <div className="backdrop-blur-md bg-[#081a2e]/60 border border-white/10 px-5 py-3 rounded-xl text-right shadow-2xl">
+               <span className="label-text text-blue-400 !mb-0.5 block opacity-80 uppercase !text-[9px]">Hotline</span>
+               <p className="text-white font-black tracking-widest text-sm leading-none">0917 872 6779 </p>
             </div>
           </div>
 
-          <div className="absolute bottom-10 left-6 md:left-12 z-30 max-w-sm">
-            <div className="backdrop-blur-xl bg-black/30 border border-white/5 p-6 md:p-8 rounded-[2rem] shadow-2xl">
+          {/* MAIN CTA CARD - Ultra Compact */}
+          <div className="absolute bottom-6 inset-x-4 md:inset-x-auto md:left-8 md:bottom-8 z-30 max-w-[320px] md:max-w-sm mx-auto md:mx-0">
+            <div className="backdrop-blur-xl bg-[#081a2e]/70 md:bg-[#081a2e]/40 border border-white/10 p-4 md:p-8 rounded-[1.2rem] md:rounded-[2rem] shadow-2xl">
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
-                  <span className="h-px w-2 bg-blue-500 opacity-50"></span>
-                  <span className="text-blue-400 text-[7px] font-black uppercase tracking-[0.7em]">
+                  <span className="h-[1.5px] w-3 bg-blue-500"></span>
+                  <span className="label-text text-blue-400 !mb-0 uppercase !tracking-[0.4em] !text-[9px]">
                     {slides[currentIndex].tag}
                   </span>
                 </div>
 
-                <h1 className="text-2xl md:text-3xl lg:text-4xl font-black text-white leading-[0.9] tracking-tighter uppercase italic !mb-3">
+                <h1 className="text-2xl md:text-3xl lg:text-4xl font-black text-white leading-[0.9] tracking-tighter uppercase italic">
                   YOUR <span className="text-blue-500">WINDOW,</span> <br /> 
                   STYLIZED
                 </h1>
 
-                <p className="text-[11px] md:text-xs text-white/60 font-medium max-w-[280px] leading-relaxed !mb-6">
-                  Premium blinds and glass fabrication for Laguna’s finest residential and commercial spaces.
+                <p className="text-xs md:text-base text-white/60 font-medium leading-relaxed italic max-w-[240px] md:max-w-xs">
+                  Premium blinds and glass for Laguna’s finest spaces.
                 </p>
 
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-col sm:flex-row gap-2 pt-1">
                   <Link 
                     to="/request-quote" 
-                    className="px-6 py-3 bg-blue-600 text-white font-black uppercase tracking-[0.4em] text-[8px] hover:bg-white hover:text-[#081a2e] transition-all shadow-xl active:scale-95"
+                    className="btn-primary !bg-blue-600 hover:!bg-white hover:!text-[#081a2e] !border-none px-5 py-3 text-center !text-[10px]"
                   >
-                    Get Estimate
+                    Get Estimate →
                   </Link>
                   <Link 
                     to="/projects" 
-                    className="px-6 py-3 border border-white/10 backdrop-blur-md text-white font-black uppercase tracking-[0.4em] text-[8px] hover:bg-white hover:text-[#081a2e] transition-all"
+                    className="btn-primary !bg-transparent border-white/20 hover:!bg-white hover:!text-[#081a2e] px-5 py-3 text-center !text-[10px]"
                   >
                     Portfolio
                   </Link>
@@ -98,7 +101,8 @@ export const Hero = () => {
             </div>
           </div>
 
-          <div className="absolute bottom-0 left-0 w-full z-40 flex h-1 px-1.5 pb-1 gap-1">
+          {/* PROGRESS INDICATOR - Slimmer */}
+          <div className="absolute bottom-0 left-0 w-full z-40 flex h-1 px-1.5 pb-1 gap-1.5">
             {slides.map((_, i) => (
               <div 
                 key={i} 
