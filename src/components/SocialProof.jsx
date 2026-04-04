@@ -69,7 +69,6 @@ export const SocialProof = () => {
 
   return (
     <section className="py-20 bg-white font-proxima overflow-hidden">
-      {/* Container with forced horizontal padding for mobile */}
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
         
         {/* SECTION 1: SOCIAL FEED */}
@@ -83,7 +82,7 @@ export const SocialProof = () => {
 
           <div className="flex flex-col lg:flex-row items-center justify-center gap-10">
             
-            {/* DESKTOP ONLY SIDEBARS */}
+            {/* DESKTOP SIDEBARS */}
             <div className="hidden lg:flex w-1/4 flex-col justify-center text-right border-r border-gray-100 pr-10">
               <h5 className="text-[#081a2e] text-xl font-black uppercase tracking-tighter mb-4">
                 Real-Time <br /> <span className="text-blue-500">Updates</span>
@@ -91,19 +90,19 @@ export const SocialProof = () => {
               <p className="spec-label !text-gray-400 !tracking-normal italic mb-6 leading-relaxed">
                 See our latest installations across Laguna as they happen.
               </p>
-              <a href="https://facebook.com/accugine.winb/" target="_blank" rel="noreferrer" className="nav-link text-blue-600 hover:text-[#081a2e]">
+              <a href="https://www.facebook.com/accugine.winb/photos_albums" target="_blank" rel="noreferrer" className="nav-link text-blue-600 hover:text-[#081a2e]">
                 View Gallery →
               </a>
             </div>
 
-            {/* CENTER: FACEBOOK FEED (Constrained width for mobile safety) */}
-            <div className="w-full max-w-[340px] xs:max-w-[400px] md:max-w-[450px] bg-gray-50 p-4 rounded-[2.5rem] border border-gray-100 shadow-xl z-10 overflow-hidden mx-auto">
+            {/* CENTER: FACEBOOK FEED (Height increased to 800px) */}
+            <div className="w-full max-w-[340px] xs:max-w-[400px] md:max-w-[450px] bg-gray-50 p-4 rounded-[2.5rem] border border-gray-100 shadow-xl z-10 overflow-hidden mx-auto min-h-[600px]">
               <div 
                 className="fb-page" 
                 data-href="https://www.facebook.com/accugine.winb/" 
                 data-tabs="timeline" 
                 data-width="500" 
-                data-height="500" 
+                data-height="800"  /* Height increased here */
                 data-small-header="true" 
                 data-adapt-container-width="true" 
                 data-hide-cover="false" 
@@ -131,7 +130,7 @@ export const SocialProof = () => {
               </a>
             </div>
 
-            {/* MOBILE NAVIGATION LINKS */}
+            {/* MOBILE LINKS */}
             <div className="flex lg:hidden flex-wrap justify-center gap-8 mt-6">
                <a href="https://facebook.com/accugine.winb/" className="nav-link text-blue-600 !text-[12px]">Facebook Feed</a>
                <a href="viber://chat?number=%2B639178726779" className="nav-link text-blue-600 !text-[12px]">Viber Inquiry</a>
@@ -157,7 +156,7 @@ export const SocialProof = () => {
           </div>
         </div>
 
-        {/* SECTION 3: TESTIMONIALS (Centered and Padded) */}
+        {/* SECTION 3: TESTIMONIALS */}
         <div className="max-w-3xl mx-auto bg-[#081a2e] rounded-[3rem] p-8 md:p-12 relative overflow-hidden shadow-2xl mb-10">
           <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/10 rounded-full blur-[80px] pointer-events-none"></div>
           
